@@ -1,11 +1,18 @@
 .header {
-    width: 1366px;
-    height: 256px;
-    background-color: #EEEEEE;
-    padding-top: rem(94px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+    margin-bottom: 25px;   
+    .spacing {
+        width: 1366px;
+        height: 256px;
+        background-color: #eeeeee;
+        margin-bottom: 228px;
+    }
     .logo {
+        position: absolute;
+        top: 94px;
         width: 326px;
         height: 326px;
         background-color: white;
@@ -15,5 +22,13 @@
         display: flex;
         justify-content: center;
         justify-items: center;
+    }
+    nav {        
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        a {
+            @include chukBtn;
+        }
     }
 }

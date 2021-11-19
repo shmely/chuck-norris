@@ -7,7 +7,11 @@
 @import "basics/base";
 @import "basics/layout";
 // Pages
+@import "pages/App";
+
+
 //Components
 
 @import "cmps/Header";
-@import "cmps/App";
+@import "cmps/Random";
+@import "cmps/Filter";

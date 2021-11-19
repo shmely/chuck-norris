@@ -1,0 +1,19 @@
+.filter {
+    display: flex;
+    width: 1000px;
+    height: 104px;
+    padding: rem(32px);
+    background-color: $formBg;
+    color: $txtBold;
+    & label {
+        font-family: roboto-meduim;
+        display: flex;
+        align-items: center;
+        & input {
+            @include chukInput;
+            margin-inline-start: rem(12px);
+            width: 292px;
+            margin-inline-end: rem(32px);
+        }        
+    }
+}
