@@ -8,25 +8,52 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &.left { 
+    pointer-events: all;
+    cursor: pointer;
+
+    &.left {
         border-radius: 3px 0 0 3px;
     }
     &.selected {
         background-color: $btnSelected;
         color: white;
+        pointer-events: none;
+        cursor: default;
     }
-
 }
-@mixin chukInput{
+@mixin chukLbl {
+    font-family: roboto-meduim;
+    display: flex;
+    align-items: center;
+}
+
+@mixin chukInput {
     border-radius: 3px;
     border: 1px solid $inputBorder;
-    height: 40px;    
+    height: 40px;
     padding: 11.5px 10px;
     font-family: roboto-normal;
     color: $txtBold;
     ::placeholder {
         color: $txtDisabled;
-
     }
 }
-
+@mixin chukSubmit {
+    display: flex;
+    justify-content: center;
+    padding-top: rem(13px);
+    padding-bottom: rem(12px);
+    border-radius: 3px;
+    width: 160px;
+    height: 40px;
+    background-color: $btnDisabled;
+    color: $txtDisabled;
+    pointer-events: none;
+    cursor: default;
+    &.enabled {
+        background-color: $btnSelected;
+        color: white;
+        pointer-events: none;
+        cursor: default;
+    }
+}

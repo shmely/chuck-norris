@@ -1,0 +1,28 @@
+.filter {
+    display: flex;
+    width: 1000px;
+    height: 104px;
+    padding: rem(32px);
+    background-color: $formBg;
+    color: $txtBold;
+    & label {
+        @include chukLbl;
+        & input {
+            @include chukInput;
+            margin-inline-start: rem(12px);
+            width: 292px;
+            margin-inline-end: rem(32px);
+        }
+        & .key-words-lbl {
+            width: 524px;
+            margin-inline-end: rem(170px);
+        }
+    }
+    & a {
+        @include chukSubmit;
+        &.enabled {
+            pointer-events: all;
+            cursor: pointer;
+        }
+    }
+}

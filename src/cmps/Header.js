@@ -4,8 +4,7 @@ import { useResolvedPath } from "react-router-dom";
  
 const Header = (props, to) => {
 
-    let resolved = useResolvedPath(to);
-    console.log(resolved.pathname)
+    let resolved = useResolvedPath(to);    
     return (
 
         <header className="header">
