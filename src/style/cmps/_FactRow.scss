@@ -1,0 +1,29 @@
+.fact-row {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    &.row-selected {
+        background-color: #E2F4FC;
+    }
+    .cells {
+        display: flex;
+        border-bottom: 1px solid #b3bec2;
+        div {
+            height: 44px;
+            padding: 12px;
+            color: $txtBold;
+
+            &.id {
+                width: 320px;
+            }
+            &.category {
+                width: 294px;
+            }
+            &.created {
+                width: 294px;
+            }
+        }
+    }
+    
+}
+

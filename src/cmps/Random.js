@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
-import Filter from "./Filter"
-import Select from 'react-select'
+import Filter from "./Filter";
+import Select from 'react-select';
+import { chuckNorrisService } from '../services/chuckNorrisService'
+import Fact from './Fact';
 const Random = (props) => {
-    
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ];
-    const [name, setName] = useState('');
-    const { search } = useLocation();
-    const query = React.useMemo(() => new URLSearchParams(search), [search]);
-
-    useEffect(() => {        
-        console.log(query);
-        setName(query.has('name') ? query.get('name') : '');
-        setCategory(query.has('category') ? options.find(c => c.value === query.get('category')) : '')
-    }, [query])
-
-
-    const [category, setCategory] = useState();
-
     const customStyles = {
         control: (provided, state) => ({
             ...provided,
@@ -35,21 +17,15 @@ const Random = (props) => {
             boxShadow: state.isFocused ? null : null,
 
         }),
-
         valueContainer: (provided, state) => ({
             ...provided,
             height: '40px',
             padding: '0 6px',
-
-
-
         }),
         menu: (provided, state) => ({
             ...provided,
             width: '215px',
             marginLeft: '12px',
-
-
         }),
         input: (provided, state) => ({
             ...provided,
@@ -64,40 +40,68 @@ const Random = (props) => {
         }),
     };
 
+
+    const [categories, setCategories] = useState();
+    const [category, setCategory] = useState(null);
+    const [name, setName] = useState('');
+    const [fact, setFact] = useState('');
+    const [error, setError] = useState(null);
+
+
+
+    useEffect(() => {
+        async function getCategories() {
+            try {
+                setError('');
+                const response = await chuckNorrisService.getCategories();
+                const options = response.map(c => ({ value: c, label: c }));
+                setCategories(options);
+                console.log(options)
+            }
+            catch (err) {
+                console.log(err);
+                setError("Somthing went wrong with the API!")
+            }
+
+        }
+        getCategories();
+    }, []);
+
     const handleTxtChange = (event) => {
         setName(event.target.value);
     }
     const onChangeCategory = (category) => {
         setCategory(category);
     }
-    const queryParams = () => {
-        const start = '?';
-        let catParam = '';
-        let namePrm = ''
-        if (name) {
-            namePrm = `name=${name}`;
+
+    const onSubmit = async () => {
+        try {
+            setError('');
+            const response = await chuckNorrisService.getFact(name,category ? category.value : null);
+            console.log(response);
+            setFact(response);
+        } catch (err) {
+            console.log(err);
+            setError("Somthing went wrong with the API!")
+
         }
-        if (category) {
-            if (name) catParam = `&category=${category.value}`; else {
-                catParam = `category=${category.value}`;
-            }
-        }
-        return start + namePrm + catParam;
     }
-
-
     return (
-        <Filter>
-            <div className="filter">
-                <label>Your name
-                    <input type="text" value={name} onChange={handleTxtChange} placeholder="e.g. Chuck Norris"></input>
-                </label>
-                <label>Category
-                    <Select value={category} onChange={onChangeCategory} placeholder="All Catagories" styles={customStyles} options={options} />
-                </label>
-                <a className={name || category ? 'enabled' : ''} href={queryParams()}>GO!</a>
-            </div>
-        </Filter>
+        <main className="flex column">
+            <Filter>
+                <div className="filter">
+                    <label>Your name
+                        <input type="text" value={name} onChange={handleTxtChange} placeholder="e.g. Chuck Norris"></input>
+                    </label>
+                    <label>Category
+                        <Select value={category} onChange={onChangeCategory} placeholder="All Catagories" styles={customStyles} options={categories} />
+                    </label>
+                    <button className={name || category ? 'enabled' : ''} onClick={onSubmit}>GO!</button>
+                </div>
+            </Filter>
+            {error && <p className="error">{error}</p>}
+            {!error && fact && <Fact fact={fact} background='#fff'></Fact>}
+        </main>
 
     )
 }

@@ -1,0 +1,37 @@
+.fact-cont {
+    width: 1000px;
+    height: 351px;
+    min-height: 351px;
+    background-color: white;
+    padding: 52px 157px 73px 196px;
+    position: relative;
+    .q-left {
+        position: absolute;
+        top: 26px;
+        left: 165px;
+        opacity: 1;
+        z-index: 1;
+    }
+    .q-right {
+        position: absolute;
+        bottom: 47px;
+        right: 126px;
+        z-index: 1;
+    }
+
+    .fact-border {
+        
+        width: 100%;
+        min-height: 100%;
+        border-top: 5px dashed #29ABE2;
+        border-right: 5px dashed #29ABE2;
+        border-bottom: 5px solid #29ABE2;
+        border-left: 5px solid #29ABE2;
+        .fact {
+            padding: 20px 31px 34px 39px;
+            font-size: rem(36px);
+            color: #29ABE2;
+            text-align: center;
+        }
+    }
+}

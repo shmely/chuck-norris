@@ -1,13 +1,13 @@
-import { history } from '../history';
 import Axios from 'axios';
 
-const BASE_URL = process.env.NODE_ENV === 'production'
-    ? '/api/'
-    : '//localhost:3030/api/';
+const BASE_URL = 'https://api.chucknorris.io/jokes';
+   
 
 const axios = Axios.create({
     withCredentials: true
 });
+
+
 
 
 export const httpService = {
@@ -38,10 +38,6 @@ async function ajax(endpoint, method = 'get', data = null) {
         return res.data;
     } catch (err) {
         console.dir(err);
-        // if (err.response && err.response.status === 401) {
-        if (err.response) {
-            history.push('/login');
-        }
         throw err;
     }
 }

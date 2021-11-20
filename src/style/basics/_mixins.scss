@@ -41,19 +41,20 @@
 @mixin chukSubmit {
     display: flex;
     justify-content: center;
+    font-family: roboto-meduim;
     padding-top: rem(13px);
     padding-bottom: rem(12px);
     border-radius: 3px;
     width: 160px;
     height: 40px;
     background-color: $btnDisabled;
-    color: $txtDisabled;
-    pointer-events: none;
+    color: $txtDisabled;    
     cursor: default;
+    outline: none;
+    border: 0;
     &.enabled {
         background-color: $btnSelected;
-        color: white;
-        pointer-events: none;
-        cursor: default;
+        color: white;        
+        cursor: pointer;
     }
 }

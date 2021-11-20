@@ -1,0 +1,32 @@
+.facts-cont {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 32px 0 32px;
+    & header {
+        height: 44px;
+        padding: 3px 0 15px 12px;
+        display: flex;
+        color: #16303C;
+        font-family: roboto-meduim;
+        svg {
+            margin-left: 10px;
+        }
+        .h-id {
+            display: flex;
+            width: 320px;
+            height: 20px;
+
+        }
+        .h-cat {
+            display: flex;
+            width: 294px;
+            height: 20px;
+        }
+        .h-date {
+            cursor: pointer;
+            display: flex;
+            width: 294px;
+            height: 20px;
+        }
+    }
+}

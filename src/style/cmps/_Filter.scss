@@ -18,11 +18,7 @@
             margin-inline-end: rem(170px);
         }
     }
-    & a {
-        @include chukSubmit;
-        &.enabled {
-            pointer-events: all;
-            cursor: pointer;
-        }
+    & button {
+        @include chukSubmit;       
     }
 }
